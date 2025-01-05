@@ -1,3 +1,4 @@
+import 'package:barra_modo3/screens/explanation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -48,7 +49,10 @@ class LoadScreen extends StatelessWidget {
                 ),
               ),
               icon: Icon(Icons.start),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (ctx) => ExplanationScreen()));
+              },
             )
           ],
         ),
