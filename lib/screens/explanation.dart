@@ -1,5 +1,4 @@
-import 'dart:ffi';
-
+import 'package:barra_modo3/screens/add_player.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,7 +16,7 @@ class ExplanationScreen extends StatelessWidget {
       ),
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,7 +57,7 @@ class ExplanationScreen extends StatelessWidget {
                 'كل اللاعبين يعرفوا الكلمة إلا شخص واحد بـ يكون',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.rubik(
-                  fontSize: 18,
+                  fontSize: 16,
                   textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: Theme.of(context).colorScheme.onSecondary,
                       ),
@@ -88,10 +87,10 @@ class ExplanationScreen extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                'تسألوا بعض أسئلة عن الكلمة، والشخص "القصقاص" يحاول يجاوب بشكل طبيعي بدون ما ينكشف، بينما باقي اللاعبين يحاولوا يكتشفوا من هو الشخص اللي ما يعرفش الكلمة. في النهاية، تطلع قائمة للشخص "القصقاص"، ويكون عليه يحاول يخمن الكلمة الصح!',
+                'تسألوا بعض أسئلة عن الكلمة، والشخص "القصقاص" يحاول يجاوب بشكل طبيعي بدون ما ينكشف، بينما باقي اللاعبين يحاولوا يكتشفوا من هو الشخص اللي ما يعرفش الكلمة. في النهاية، تطلع قائمة للشخص "القصقاص"، ويكون عليه يحاول يخمن الكلمة الصح',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.rubik(
-                  fontSize: 18,
+                  fontSize: 16,
                   height: 1.5,
                   textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: Theme.of(context).colorScheme.onSecondary,
@@ -113,7 +112,11 @@ class ExplanationScreen extends StatelessWidget {
                 ),
                 icon: Icon(Icons.start),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (ctx) => AddPlayerScreen(),
+                    ),
+                  );
                 },
               ),
             ],
