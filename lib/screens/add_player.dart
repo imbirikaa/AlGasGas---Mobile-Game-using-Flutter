@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:barra_modo3/models/player.dart';
+import 'package:barra_modo3/screens/category.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,10 +39,14 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Theme.of(context).colorScheme.primary,
-            Theme.of(context).colorScheme.primary.withAlpha(200),
-          ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+          gradient: LinearGradient(
+            colors: [
+              Theme.of(context).colorScheme.primary,
+              Theme.of(context).colorScheme.primary.withAlpha(200),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
         ),
         child: SafeArea(
           child: Center(
@@ -187,13 +194,19 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                         ),
                       ),
                       icon: Icon(Icons.flag),
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (ctx) => AddPlayerScreen(),
-                          ),
-                        );
-                      },
+                      onPressed: (players.length < 4)
+                          ? () {}
+                          : () {
+                              final random = Random();
+
+                              players[random.nextInt(players.length)]
+                                  .isImposter = true;
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (ctx) => CategoryScreen(),
+                                ),
+                              );
+                            },
                     ),
                   ],
                 ),

@@ -157,7 +157,7 @@ List<String> getShuffledAnswers(String category, String answer) {
   final filteredItems = items.where((item) => item != answer).toList();
 
   final randomItems = List<String>.generate(
-    8,
+    7,
     (_) {
       final index = random.nextInt(filteredItems.length);
       return filteredItems.removeAt(index);
@@ -169,4 +169,8 @@ List<String> getShuffledAnswers(String category, String answer) {
   randomItems.shuffle(random);
 
   return randomItems;
+}
+
+List<String> getCategories() {
+  return categories.keys.toList();
 }
