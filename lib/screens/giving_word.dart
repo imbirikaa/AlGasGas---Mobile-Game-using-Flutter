@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:barra_modo3/models/category.dart';
 import 'package:barra_modo3/models/player.dart';
 import 'package:barra_modo3/screens/add_player.dart';
-import 'package:barra_modo3/screens/category.dart';
+import 'package:barra_modo3/screens/asking.dart';
 import 'package:barra_modo3/widgets/first.dart';
 import 'package:barra_modo3/widgets/second.dart';
 import 'package:flutter/material.dart';
@@ -151,16 +151,17 @@ class _GivingWordState extends ConsumerState<GivingWord> {
                     setState(() {
                       if (page == 'first') {
                         page = 'second';
-                      } else if (page == 'second') {
+                      } else if (page == 'second' && i < players.length - 1) {
                         page = 'first';
-
                         i++;
+                      } else {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => AskingScreen(),
+                          ),
+                        );
                       }
                     });
-                    if (i >= players.length) {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => CategoryScreen()));
-                    }
                   },
                   child: Text(
                     'التالــــي',
