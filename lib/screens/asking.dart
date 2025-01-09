@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:barra_modo3/models/player.dart';
-import 'package:barra_modo3/screens/category.dart';
 import 'package:barra_modo3/screens/who_is.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

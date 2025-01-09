@@ -1,28 +1,36 @@
+import 'package:barra_modo3/models/category.dart';
 import 'package:barra_modo3/models/player.dart';
-import 'package:barra_modo3/screens/show_imposter.dart';
+import 'package:barra_modo3/screens/score.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:barra_modo3/providers/word_provider.dart';
+import 'package:barra_modo3/providers/category_provider.dart';
 import 'package:barra_modo3/providers/players.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class WhoIsScreen extends ConsumerStatefulWidget {
-  const WhoIsScreen({super.key});
+class TheWordScreen extends ConsumerStatefulWidget {
+  const TheWordScreen({super.key});
 
   @override
-  ConsumerState<WhoIsScreen> createState() => _WhoIsScreenState();
+  ConsumerState<TheWordScreen> createState() => _TheWordScreenState();
 }
 
-class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
-  late List<Player>? players;
-  late Player? imposterPlayer;
-  int i = 0;
+class _TheWordScreenState extends ConsumerState<TheWordScreen> {
+  late String theWord;
+  late CategoryModel category;
+  late List<String> answers;
+  late Player imposter;
+  bool isSelected = false;
+  int? selectedIndex;
+  bool isCorrect = false;
 
   @override
   void initState() {
+    theWord = ref.read(wordNotifier);
+    category = ref.read(categoryNotifier);
+    answers = CategoryModel.getShuffledAnswers(category, theWord);
+    imposter = ref.read(playersNotifier.notifier).findImposter();
     super.initState();
-    players = ref.read(playersNotifier);
-    imposterPlayer = ref.read(playersNotifier.notifier).findImposter();
-    i = 0;
   }
 
   @override
@@ -74,7 +82,7 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
                         ),
                       ),
                       TextSpan(
-                        text: players![i].name,
+                        text: imposter.name,
                         style: GoogleFonts.rubik(
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
@@ -92,7 +100,7 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'اختار الشخص اللي تحس انّه القصقاص',
+                  'اختار الكلمة اللي تحس ان الموضوع عليها',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.rubik(
                     fontWeight: FontWeight.normal,
@@ -105,33 +113,40 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
                 SizedBox(height: 50),
                 Expanded(
                   child: ListView.builder(
-                    itemCount:
-                        players!.where((p) => p != players![i]).toList().length,
+                    itemCount: answers.length,
                     itemBuilder: (ctx, index) => ElevatedButton(
-                      onPressed: () {
-                        if (players!
-                                .where((p) => p != players![i])
-                                .toList()[index] ==
-                            imposterPlayer) {
-                          players![i].points += 10;
-                        }
-                        if (i >= players!.length - 1) {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => ShowImposterScreen(),
-                            ),
-                          );
-                        } else {
-                          setState(() {
-                            i++;
-                          });
-                        }
-                      },
+                      onPressed: (isSelected)
+                          ? null
+                          : () async {
+                              setState(() {
+                                selectedIndex = index;
+                                isSelected = true;
+                                isCorrect = answers[index] == theWord;
+                                if (isCorrect) {
+                                  imposter.points += 10;
+                                }
+                              });
+                              await Future.delayed(Duration(seconds: 3));
+                              if (mounted) {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) => ScoreSreen()));
+                              }
+                            },
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(
+                            (selectedIndex == index)
+                                ? ((answers[index] == theWord)
+                                    ? Colors.green
+                                    : Colors.red)
+                                : (isSelected && answers[index] == theWord)
+                                    ? Colors.green
+                                    : Theme.of(context)
+                                        .colorScheme
+                                        .onSecondary),
+                      ),
                       child: Text(
-                        players!
-                            .where((p) => p != players![i])
-                            .toList()[index]
-                            .name,
+                        answers[index],
                         style: GoogleFonts.rubik(
                           fontWeight: FontWeight.w500,
                           fontSize: 20,

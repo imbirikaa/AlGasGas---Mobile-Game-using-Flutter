@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:barra_modo3/models/player.dart';
 import 'package:barra_modo3/screens/category.dart';
@@ -195,12 +194,10 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                       ),
                       icon: Icon(Icons.flag),
                       onPressed: (players.length < 4)
-                          ? () {}
+                          ? null
                           : () {
-                              final random = Random();
-
-                              players[random.nextInt(players.length)]
-                                  .isImposter = true;
+                              ref.read(playersNotifier.notifier).cleanPoints();
+                              
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (ctx) => CategoryScreen(),

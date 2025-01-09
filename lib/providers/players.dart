@@ -14,6 +14,18 @@ class PlayersNotifier extends StateNotifier<List<Player>> {
     state = [...state]..remove(player);
   }
 
+  void cleanPoints() {
+    for (Player p in state) {
+      p.points = 0;
+    }
+  }
+
+  void cleanImposter() {
+    for (Player p in state) {
+      p.isImposter = false;
+    }
+  }
+
   Player findImposter() {
     return state.firstWhere((player) => player.isImposter == true);
   }

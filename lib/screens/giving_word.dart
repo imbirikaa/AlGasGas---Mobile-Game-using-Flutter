@@ -1,6 +1,7 @@
 import 'dart:math';
-
 import 'package:barra_modo3/models/category.dart';
+import 'package:barra_modo3/providers/category_provider.dart';
+import 'package:barra_modo3/providers/word_provider.dart';
 import 'package:barra_modo3/models/player.dart';
 import 'package:barra_modo3/screens/add_player.dart';
 import 'package:barra_modo3/screens/asking.dart';
@@ -12,9 +13,7 @@ import 'package:barra_modo3/providers/players.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GivingWord extends ConsumerStatefulWidget {
-  const GivingWord({required this.category, super.key});
-
-  final CategoryModel category;
+  const GivingWord({super.key});
 
   @override
   ConsumerState<GivingWord> createState() {
@@ -23,6 +22,8 @@ class GivingWord extends ConsumerStatefulWidget {
 }
 
 class _GivingWordState extends ConsumerState<GivingWord> {
+  late CategoryModel category;
+
   late final String word;
   late final List<Player> players;
   final random = Random();
@@ -51,9 +52,15 @@ class _GivingWordState extends ConsumerState<GivingWord> {
   @override
   void initState() {
     super.initState();
-    word = widget.category.getRandomItem();
+    category = ref.read(categoryNotifier);
+    word = category.getRandomItem();
+
     players = ref.read(playersNotifier);
     selectImposter();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(wordNotifier.notifier).setWord(word);
+    });
   }
 
   @override
