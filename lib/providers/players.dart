@@ -13,6 +13,10 @@ class PlayersNotifier extends StateNotifier<List<Player>> {
   void removePlayer(Player player) {
     state = [...state]..remove(player);
   }
+
+  Player findImposter() {
+    return state.firstWhere((player) => player.isImposter == true);
+  }
 }
 
 final playersNotifier =

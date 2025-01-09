@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:barra_modo3/models/player.dart';
 import 'package:barra_modo3/screens/category.dart';
+import 'package:barra_modo3/screens/who_is.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
@@ -20,13 +21,15 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
   late List<Player> willAsked; // Mutable list to track players
   late List<Player> players; // Mutable list to track players
   Player? askedPlayer; // Current player
-  int i = 0;
   bool secondRound = false;
   bool anyAsking = false;
+  int i = 0;
 
   @override
   void initState() {
     super.initState();
+
+    i = 0;
     players = ref.read(playersNotifier);
     willAsked = List.from(players);
     selectAndRemoveNextPlayer();
@@ -165,7 +168,7 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
                     } else {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => CategoryScreen(),
+                          builder: (context) => WhoIsScreen(),
                         ),
                       );
                     }
