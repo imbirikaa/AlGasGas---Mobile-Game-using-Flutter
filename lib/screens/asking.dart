@@ -23,6 +23,7 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
   bool secondRound = false;
   bool anyAsking = false;
   int i = 0;
+  bool fin = false;
 
   @override
   void initState() {
@@ -112,7 +113,9 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
                         ),
                       ),
                       TextSpan(
-                        text: (secondRound) ? 'أي حد' : askedPlayer!.name,
+                        text: (secondRound || askedPlayer == null)
+                            ? 'أي حد'
+                            : askedPlayer!.name,
                         style: GoogleFonts.rubik(
                           fontSize: 20,
                           height: 1.5,
@@ -165,7 +168,7 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
                         });
                       }
                     } else {
-                      Navigator.of(context).push(
+                      Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (context) => WhoIsScreen(),
                         ),

@@ -22,7 +22,7 @@ class ExplanationScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "🎮 لعبة برّا الموضوع",
+                "🎮 لعبة من القصقاص",
                 style: GoogleFonts.rubik(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
@@ -112,10 +112,11 @@ class ExplanationScreen extends StatelessWidget {
                 ),
                 icon: Icon(Icons.start),
                 onPressed: () {
-                  Navigator.of(context).push(
+                  Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
                       builder: (ctx) => AddPlayerScreen(),
                     ),
+                    (route) => false,
                   );
                 },
               ),

@@ -20,7 +20,7 @@ class _CategoryItemState extends ConsumerState<CategoryItem> {
       splashColor: Theme.of(context).colorScheme.onSecondary,
       onTap: () {
         ref.read(categoryNotifier.notifier).setCategory(widget.category);
-        Navigator.of(context).push(
+        Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => GivingWord(),
           ),

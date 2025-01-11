@@ -19,7 +19,7 @@ class LoadScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "لعبة برّا الموضوع",
+              'لعبة من القصقاص ؟',
               style: GoogleFonts.rubik(
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
@@ -50,8 +50,10 @@ class LoadScreen extends StatelessWidget {
               ),
               icon: Icon(Icons.start),
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (ctx) => ExplanationScreen()));
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (ctx) => ExplanationScreen()),
+                  (route) => false,
+                );
               },
             )
           ],

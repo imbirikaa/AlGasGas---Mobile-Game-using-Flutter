@@ -150,10 +150,9 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                         ),
                         icon: Icon(Icons.person),
                         onPressed: () {
-                          Navigator.of(context).pushAndRemoveUntil(
+                          Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => AddPlayerScreen()),
-                              (route) => false);
+                                  builder: (context) => AddPlayerScreen()));
                         },
                       ),
                       SizedBox(height: 10),
@@ -174,10 +173,9 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                         ),
                         icon: Icon(Icons.flag),
                         onPressed: () {
-                          Navigator.of(context).pushAndRemoveUntil(
+                          Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => GivingWord()),
-                              (route) => false);
+                                  builder: (context) => GivingWord()));
                         },
                       ),
                       SizedBox(height: 10),
@@ -198,10 +196,9 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                         ),
                         icon: Icon(Icons.edit),
                         onPressed: () {
-                          Navigator.of(context).pushAndRemoveUntil(
+                          Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => CategoryScreen()),
-                              (route) => false);
+                                  builder: (context) => CategoryScreen()));
                         },
                       ),
                     ],

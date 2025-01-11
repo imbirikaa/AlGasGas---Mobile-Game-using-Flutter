@@ -50,7 +50,7 @@ class _ShowImposterScreenState extends ConsumerState<ShowImposterScreen> {
     });
 
     // Pause for 5 seconds
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(Duration(seconds: 3));
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => TheWordScreen()));
   }
