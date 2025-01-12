@@ -1,6 +1,6 @@
-
 import 'package:barra_modo3/models/player.dart';
 import 'package:barra_modo3/screens/category.dart';
+import 'package:barra_modo3/screens/explanation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,55 +35,155 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
   Widget build(BuildContext context) {
     final List<Player> players = ref.watch(playersNotifier);
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Theme.of(context).colorScheme.primary,
-              Theme.of(context).colorScheme.primary.withAlpha(200),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                  Text(
-                    'اضافة اللاعبين',
+      body: WillPopScope(
+        onWillPop: () async {
+          // Show a confirmation dialog
+          final shouldGoBack = await showDialog<bool>(
+            context: context,
+            builder: (context) {
+              return Directionality(
+                textDirection: TextDirection.rtl,
+                child: AlertDialog(
+                  title: Text(
+                    "تأكيد",
                     style: GoogleFonts.rubik(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  TextField(
-                    controller: _nameController,
-                    textAlign: TextAlign.end,
-                    style: GoogleFonts.rubik(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
                       textStyle:
                           Theme.of(context).textTheme.bodySmall!.copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .primary
-                                    .withAlpha(200),
+                                color: Theme.of(context).colorScheme.primary,
                               ),
                     ),
-                    decoration: InputDecoration(
-                      hintText: 'اكتب اسم اللاعب',
-                      hintStyle: GoogleFonts.rubik(
+                  ),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment
+                        .start, // Ensures the column takes only necessary space
+                    children: [
+                      Text(
+                        "هل أنت متأكد تبي ترجع ؟",
+                        style: GoogleFonts.rubik(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
+                        ),
+                      ),
+                      SizedBox(
+                          height:
+                              10), // Add spacing between main content and sub-description
+                      Text(
+                        "لن يتم حفظ التغييرات لو رجعت.",
+                        style: GoogleFonts.rubik(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.secondary,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () =>
+                          Navigator.of(context).pop(false), // Stay on the page
+                      child: Text(
+                        "لا",
+                        style: GoogleFonts.rubik(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                          textStyle: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => ExplanationScreen()),
+                          (route) => false), // Go back
+                      child: Text(
+                        "نعم",
+                        style: GoogleFonts.rubik(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                          textStyle:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    color: Colors.redAccent,
+                                  ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+          return shouldGoBack ?? false; // Return false if dialog is dismissed
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Theme.of(context).colorScheme.primary,
+                Theme.of(context).colorScheme.primary.withAlpha(200),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: SafeArea(
+            child: Center(
+              child: Column(
+                children: [
+                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                    Text(
+                      'اضافة اللاعبين',
+                      style: GoogleFonts.rubik(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                        textStyle: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(
+                              color: Theme.of(context).colorScheme.onSecondary,
+                            ),
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'اقل شيء 4 لاعبين',
+                      style: GoogleFonts.rubik(
+                        fontWeight: FontWeight.w300,
                         fontSize: 16,
+                        textStyle: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(
+                              color: Theme.of(context).colorScheme.onSecondary,
+                            ),
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    TextField(
+                      controller: _nameController,
+                      textAlign: TextAlign.end,
+                      style: GoogleFonts.rubik(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
                         textStyle:
                             Theme.of(context).textTheme.bodySmall!.copyWith(
                                   color: Theme.of(context)
@@ -92,122 +192,138 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                                       .withAlpha(200),
                                 ),
                       ),
-                      suffixIcon: Icon(Icons.person, color: Colors.green),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                      decoration: InputDecoration(
+                        hintText: 'اكتب اسم اللاعب',
+                        hintStyle: GoogleFonts.rubik(
+                          fontSize: 16,
+                          textStyle:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .primary
+                                        .withAlpha(200),
+                                  ),
+                        ),
+                        suffixIcon: Icon(Icons.person, color: Colors.green),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green, width: 2),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green, width: 2),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        filled: true,
+                        fillColor: Theme.of(context).colorScheme.onSecondary,
                       ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green, width: 2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green, width: 2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      filled: true,
-                      fillColor: Theme.of(context).colorScheme.onSecondary,
                     ),
-                  ),
-                ]),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 30),
-                    child: ListView.builder(
-                      itemCount: players.length,
-                      itemBuilder: (context, index) {
-                        return Dismissible(
-                          key: ValueKey(players[index].id),
-                          onDismissed: (direction) {
-                            ref
-                                .read(playersNotifier.notifier)
-                                .removePlayer(players[index]);
-                          },
-                          direction: DismissDirection.endToStart,
-                          background: Container(
-                            alignment: Alignment.centerRight,
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            color: Colors.red,
-                            child: Icon(Icons.delete, color: Colors.white),
-                          ),
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: ListTile(
-                              leading: Icon(Icons.person, color: Colors.green),
-                              title: Text(
-                                players[index].name,
-                                style: GoogleFonts.rubik(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
-                                  textStyle: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall!
-                                      .copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onSecondary,
-                                      ),
+                  ]),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 30),
+                      child: ListView.builder(
+                        itemCount: players.length,
+                        itemBuilder: (context, index) {
+                          return Dismissible(
+                            key: ValueKey(players[index].id),
+                            onDismissed: (direction) {
+                              ref
+                                  .read(playersNotifier.notifier)
+                                  .removePlayer(players[index]);
+                            },
+                            direction: DismissDirection.endToStart,
+                            background: Container(
+                              alignment: Alignment.centerRight,
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              color: Colors.red,
+                              child: Icon(Icons.delete, color: Colors.white),
+                            ),
+                            child: Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: ListTile(
+                                leading:
+                                    Icon(Icons.person, color: Colors.green),
+                                title: Text(
+                                  players[index].name,
+                                  style: GoogleFonts.rubik(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSecondary,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton.icon(
-                      iconAlignment: IconAlignment.end,
-                      label: Text(
-                        "أضف لاعب",
-                        style: GoogleFonts.rubik(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                        ),
-                      ),
-                      icon: Icon(Icons.person),
-                      onPressed: _addPlayer,
-                    ),
-                    SizedBox(width: 24),
-                    ElevatedButton.icon(
-                      iconAlignment: IconAlignment.end,
-                      label: Text(
-                        "! جاهزين",
-                        style: GoogleFonts.rubik(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                        ),
-                      ),
-                      icon: Icon(Icons.flag),
-                      onPressed: (players.length < 4)
-                          ? null
-                          : () {
-                              ref.read(playersNotifier.notifier).cleanPoints();
-                              
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (ctx) => CategoryScreen(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton.icon(
+                        iconAlignment: IconAlignment.end,
+                        label: Text(
+                          "أضف لاعب",
+                          style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
                                 ),
-                              );
-                            },
-                    ),
-                  ],
-                ),
-              ],
+                          ),
+                        ),
+                        icon: Icon(Icons.person),
+                        onPressed: _addPlayer,
+                      ),
+                      SizedBox(width: 24),
+                      ElevatedButton.icon(
+                        iconAlignment: IconAlignment.end,
+                        label: Text(
+                          "! جاهزين",
+                          style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                          ),
+                        ),
+                        icon: Icon(Icons.flag),
+                        onPressed: (players.length < 4)
+                            ? null
+                            : () {
+                                ref
+                                    .read(playersNotifier.notifier)
+                                    .cleanPoints();
+
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (ctx) => CategoryScreen(),
+                                  ),
+                                );
+                              },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

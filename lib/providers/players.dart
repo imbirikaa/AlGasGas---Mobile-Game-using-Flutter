@@ -26,6 +26,10 @@ class PlayersNotifier extends StateNotifier<List<Player>> {
     }
   }
 
+  void cleanPlayers(){
+    state = [];
+  }
+
   Player findImposter() {
     return state.firstWhere((player) => player.isImposter == true);
   }

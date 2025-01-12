@@ -1,5 +1,6 @@
 import 'package:barra_modo3/models/category.dart';
 import 'package:barra_modo3/models/player.dart';
+import 'package:barra_modo3/screens/explanation.dart';
 import 'package:barra_modo3/screens/score.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,117 +37,68 @@ class _TheWordScreenState extends ConsumerState<TheWordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Theme.of(context).colorScheme.primary,
-              Theme.of(context).colorScheme.primary.withAlpha(200),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                SizedBox(height: 80),
-                Text(
-                  'مرحلة التصويت',
-                  style: GoogleFonts.rubik(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.onSecondary,
-                        ),
+      body: WillPopScope(
+        onWillPop: () async {
+          // Show a confirmation dialog
+          final shouldGoBack = await showDialog<bool>(
+            context: context,
+            builder: (context) {
+              return Directionality(
+                textDirection: TextDirection.rtl,
+                child: AlertDialog(
+                  title: Text(
+                    "تأكيد",
+                    style: GoogleFonts.rubik(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                      textStyle:
+                          Theme.of(context).textTheme.bodySmall!.copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                    ),
                   ),
-                ),
-                SizedBox(height: 30),
-                Text.rich(
-                  TextSpan(
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment
+                        .start, // Ensures the column takes only necessary space
                     children: [
-                      TextSpan(
-                        text: 'اعطوا الجهاز لـ ',
+                      Text(
+                        "هل أنت متأكد تبي ترجع ؟",
                         style: GoogleFonts.rubik(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 24,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
                           textStyle: Theme.of(context)
                               .textTheme
-                              .titleLarge!
+                              .bodySmall!
                               .copyWith(
-                                color:
-                                    Theme.of(context).colorScheme.onSecondary,
+                                color: Theme.of(context).colorScheme.secondary,
                               ),
                         ),
                       ),
-                      TextSpan(
-                        text: imposter.name,
+                      SizedBox(
+                          height:
+                              10), // Add spacing between main content and sub-description
+                      Text(
+                        "لن يتم حفظ التغييرات لو رجعت.",
                         style: GoogleFonts.rubik(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
                           textStyle: Theme.of(context)
                               .textTheme
-                              .titleLarge!
+                              .bodySmall!
                               .copyWith(
-                                color:
-                                    Theme.of(context).colorScheme.onSecondary,
+                                color: Theme.of(context).colorScheme.secondary,
                               ),
                         ),
                       ),
                     ],
                   ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'اختار الكلمة اللي تحس ان الموضوع عليها',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.rubik(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 20,
-                    textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.onSecondary,
-                        ),
-                  ),
-                ),
-                SizedBox(height: 50),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: answers.length,
-                    itemBuilder: (ctx, index) => ElevatedButton(
-                      onPressed: (isSelected)
-                          ? null
-                          : () async {
-                              setState(() {
-                                selectedIndex = index;
-                                isSelected = true;
-                                isCorrect = answers[index] == theWord;
-                                if (isCorrect) {
-                                  imposter.points += 10;
-                                }
-                              });
-                              await Future.delayed(Duration(seconds: 3));
-                              if (mounted) {
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) => ScoreSreen()));
-                              }
-                            },
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(
-                            (selectedIndex == index)
-                                ? ((answers[index] == theWord)
-                                    ? Colors.green
-                                    : Colors.red)
-                                : (isSelected && answers[index] == theWord)
-                                    ? Colors.green
-                                    : Theme.of(context)
-                                        .colorScheme
-                                        .onSecondary),
-                      ),
+                  actions: [
+                    TextButton(
+                      onPressed: () =>
+                          Navigator.of(context).pop(false), // Stay on the page
                       child: Text(
-                        answers[index],
+                        "لا",
                         style: GoogleFonts.rubik(
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
@@ -159,9 +111,163 @@ class _TheWordScreenState extends ConsumerState<TheWordScreen> {
                         ),
                       ),
                     ),
-                  ),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => ExplanationScreen()),
+                          (route) => false), // Go back
+                      child: Text(
+                        "نعم",
+                        style: GoogleFonts.rubik(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                          textStyle:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    color: Colors.redAccent,
+                                  ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
+              );
+            },
+          );
+          return shouldGoBack ?? false; // Return false if dialog is dismissed
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Theme.of(context).colorScheme.primary,
+                Theme.of(context).colorScheme.primary.withAlpha(200),
               ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: SafeArea(
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(height: 80),
+                  Text(
+                    'مرحلة التصويت',
+                    style: GoogleFonts.rubik(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                      textStyle: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                          ),
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'اعطوا الجهاز لـ ',
+                          style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 24,
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                ),
+                          ),
+                        ),
+                        TextSpan(
+                          text: imposter.name,
+                          style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'اختار الكلمة اللي تحس ان الموضوع عليها',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 20,
+                      textStyle: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                          ),
+                    ),
+                  ),
+                  SizedBox(height: 50),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: answers.length,
+                      itemBuilder: (ctx, index) => ElevatedButton(
+                        onPressed: (isSelected)
+                            ? null
+                            : () async {
+                                setState(() {
+                                  selectedIndex = index;
+                                  isSelected = true;
+                                  isCorrect = answers[index] == theWord;
+                                  if (isCorrect) {
+                                    imposter.points += 10;
+                                  }
+                                });
+                                await Future.delayed(Duration(seconds: 3));
+                                if (mounted) {
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                          builder: (context) => ScoreSreen()));
+                                }
+                              },
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                              (selectedIndex == index)
+                                  ? ((answers[index] == theWord)
+                                      ? Colors.green
+                                      : Colors.red)
+                                  : (isSelected && answers[index] == theWord)
+                                      ? Colors.green
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary),
+                        ),
+                        child: Text(
+                          answers[index],
+                          style: GoogleFonts.rubik(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 20,
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

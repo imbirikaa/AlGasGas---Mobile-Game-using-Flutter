@@ -3,8 +3,8 @@ import 'package:barra_modo3/models/category.dart';
 import 'package:barra_modo3/providers/category_provider.dart';
 import 'package:barra_modo3/providers/word_provider.dart';
 import 'package:barra_modo3/models/player.dart';
-import 'package:barra_modo3/screens/add_player.dart';
 import 'package:barra_modo3/screens/asking.dart';
+import 'package:barra_modo3/screens/category.dart';
 import 'package:barra_modo3/widgets/first.dart';
 import 'package:barra_modo3/widgets/second.dart';
 import 'package:flutter/material.dart';
@@ -26,16 +26,18 @@ class _GivingWordState extends ConsumerState<GivingWord> {
 
   late final String word;
   late final List<Player> players;
-  final random = Random();
+  final random = Random.secure();
   String page = 'first';
   int i = 0;
 
   void selectImposter() {
-    for (Player p in players) {
+    List<Player> randomPlayers = List.from(players);
+    randomPlayers.shuffle();
+    for (Player p in randomPlayers) {
       p.isImposter = false;
     }
 
-    players[random.nextInt(players.length)].isImposter = true;
+    randomPlayers[random.nextInt(randomPlayers.length)].isImposter = true;
   }
 
   Widget firstPage() {
@@ -86,7 +88,7 @@ class _GivingWordState extends ConsumerState<GivingWord> {
                   ),
                 ),
                 content: Text(
-                  "هل أنت متأكد تبي تطلع ؟",
+                  "هل أنت متأكد تبي ترجع ؟",
                   style: GoogleFonts.rubik(
                     fontWeight: FontWeight.w400,
                     fontSize: 16,
@@ -114,7 +116,7 @@ class _GivingWordState extends ConsumerState<GivingWord> {
                   TextButton(
                     onPressed: () => Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
-                            builder: (context) => AddPlayerScreen()),
+                            builder: (context) => CategoryScreen()),
                         (route) => false), // Go back
                     child: Text(
                       "نعم",
