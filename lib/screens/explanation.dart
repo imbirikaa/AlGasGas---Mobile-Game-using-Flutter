@@ -1,7 +1,6 @@
 import 'package:barra_modo3/screens/add_player.dart';
 import 'package:barra_modo3/screens/load.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
 
@@ -41,97 +40,71 @@ class _ExplanationScreenState extends ConsumerState<ExplanationScreen> {
                 children: [
                   Text(
                     "🎮 لعبة من القصقاص",
-                    style: GoogleFonts.rubik(
-                      fontWeight: FontWeight.bold,
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w700,
                       fontSize: 30,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                   SizedBox(height: 40),
                   Text(
                     'لعبة ضحك وتركيز مع صحابك',
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontSize: 20,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                   SizedBox(height: 24),
                   Text(
                     ':الفكرة',
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                   SizedBox(height: 8),
                   Text(
                     'كل اللاعبين يعرفوا الكلمة إلا شخص واحد بـ يكون',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontSize: 16,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                   SizedBox(height: 8),
                   Text(
                     'القصقاص',
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
-                      textStyle:
-                          Theme.of(context).textTheme.bodySmall!.copyWith(
-                                color: Colors.redAccent,
-                              ),
+                      color: Colors.redAccent,
                     ),
                   ),
                   SizedBox(height: 16),
                   Text(
                     ':القواعد',
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                   SizedBox(height: 8),
                   Text(
                     'تسألوا بعض أسئلة عن الكلمة، والشخص "القصقاص" يحاول يجاوب بشكل طبيعي بدون ما ينكشف، بينما باقي اللاعبين يحاولوا يكتشفوا من هو الشخص اللي ما يعرفش الكلمة. في النهاية، تطلع قائمة للشخص "القصقاص"، ويكون عليه يحاول يخمن الكلمة الصح',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontSize: 16,
                       height: 1.5,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                   SizedBox(height: 30),
@@ -139,13 +112,11 @@ class _ExplanationScreenState extends ConsumerState<ExplanationScreen> {
                     iconAlignment: IconAlignment.end,
                     label: Text(
                       "! جاهزين",
-                      style: GoogleFonts.rubik(
+                      style: TextStyle(
+                        fontFamily: 'Rubik',
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        textStyle:
-                            Theme.of(context).textTheme.bodySmall!.copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     icon: Icon(Icons.start),

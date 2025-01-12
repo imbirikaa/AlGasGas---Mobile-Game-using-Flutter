@@ -6,7 +6,6 @@ import 'package:barra_modo3/screens/who_is.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AskingScreen extends ConsumerStatefulWidget {
   const AskingScreen({super.key});
@@ -57,22 +56,6 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
     return false;
   }
 
-  // void selectAndRemoveNextPlayer() {
-  //   setState(() {
-  //     final candidates =
-  //         willAsked.where((player) => player != players[i]).toList();
-
-  //     if (candidates.isNotEmpty) {
-  //       final random = Random();
-  //       askedPlayer = candidates[random.nextInt(candidates.length)];
-
-  //       willAsked.remove(askedPlayer);
-  //     } else if (candidates.isEmpty) {
-  //       fin = true;
-  //     }
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,45 +70,33 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
                 child: AlertDialog(
                   title: Text(
                     "تأكيد",
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
-                      textStyle:
-                          Theme.of(context).textTheme.bodySmall!.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
-                  content:
-                      Text(
-                        "هل أنت متأكد تبي ترجع ؟",
-                        style: GoogleFonts.rubik(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
-                        ),
-                      ),
-                      
+                  content: Text(
+                    "هل أنت متأكد تبي ترجع ؟",
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
                   actions: [
                     TextButton(
                       onPressed: () =>
                           Navigator.of(context).pop(false), // Stay on the page
                       child: Text(
                         "لا",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
                     ),
@@ -136,13 +107,11 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
                           (route) => false), // Go back
                       child: Text(
                         "نعم",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: Colors.redAccent,
-                                  ),
+                          color: Colors.redAccent,
                         ),
                       ),
                     ),
@@ -172,15 +141,11 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
                   SizedBox(height: 150),
                   Text(
                     'مرحلة الأسئلة',
-                    style: GoogleFonts.rubik(
-                      fontWeight: FontWeight.bold,
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w700,
                       fontSize: 30,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                   SizedBox(height: 30),
@@ -190,59 +155,39 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
                       children: [
                         TextSpan(
                           text: players[i].name,
-                          style: GoogleFonts.rubik(
+                          style: TextStyle(
+                            fontFamily: 'Rubik',
                             fontSize: 20,
                             height: 1.5,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
-                                ),
+                            color: Theme.of(context).colorScheme.onSecondary,
                           ),
                         ),
                         TextSpan(
                           text: ' اسأل ',
-                          style: GoogleFonts.rubik(
+                          style: TextStyle(
+                            fontFamily: 'Rubik',
                             fontSize: 20,
                             height: 1.5,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
-                                ),
+                            color: Theme.of(context).colorScheme.onSecondary,
                           ),
                         ),
                         TextSpan(
                           text: (secondRound) ? 'أي حد' : askedPlayer!.name,
-                          style: GoogleFonts.rubik(
+                          style: TextStyle(
+                            fontFamily: 'Rubik',
                             fontSize: 20,
                             height: 1.5,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
-                                ),
+                            color: Theme.of(context).colorScheme.onSecondary,
                           ),
                         ),
                         TextSpan(
                           text:
                               ' سؤال ليه علاقة بالموضوع ! اسأل سؤال مليح ماتخليش القصقاص يعرف الموضوع',
-                          style: GoogleFonts.rubik(
+                          style: TextStyle(
+                            fontFamily: 'Rubik',
                             fontSize: 20,
                             height: 1.5,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
-                                ),
+                            color: Theme.of(context).colorScheme.onSecondary,
                           ),
                         ),
                       ],
@@ -275,13 +220,11 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
                     },
                     child: Text(
                       'التالــــي',
-                      style: GoogleFonts.rubik(
+                      style: TextStyle(
+                        fontFamily: 'Rubik',
                         fontWeight: FontWeight.w500,
                         fontSize: 20,
-                        textStyle:
-                            Theme.of(context).textTheme.bodySmall!.copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   ),

@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ShowImposterScreen extends ConsumerStatefulWidget {
   const ShowImposterScreen({super.key});
@@ -70,13 +69,11 @@ class _ShowImposterScreenState extends ConsumerState<ShowImposterScreen> {
                 child: AlertDialog(
                   title: Text(
                     "تأكيد",
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
-                      textStyle:
-                          Theme.of(context).textTheme.bodySmall!.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   content: Column(
@@ -86,15 +83,11 @@ class _ShowImposterScreenState extends ConsumerState<ShowImposterScreen> {
                     children: [
                       Text(
                         "هل أنت متأكد تبي ترجع ؟",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w400,
                           fontSize: 16,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                       SizedBox(
@@ -102,15 +95,11 @@ class _ShowImposterScreenState extends ConsumerState<ShowImposterScreen> {
                               10), // Add spacing between main content and sub-description
                       Text(
                         "لن يتم حفظ التغييرات لو رجعت.",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                     ],
@@ -121,15 +110,11 @@ class _ShowImposterScreenState extends ConsumerState<ShowImposterScreen> {
                           Navigator.of(context).pop(false), // Stay on the page
                       child: Text(
                         "لا",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
                     ),
@@ -140,13 +125,11 @@ class _ShowImposterScreenState extends ConsumerState<ShowImposterScreen> {
                           (route) => false), // Go back
                       child: Text(
                         "نعم",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: Colors.redAccent,
-                                  ),
+                          color: Colors.redAccent,
                         ),
                       ),
                     ),
@@ -158,51 +141,50 @@ class _ShowImposterScreenState extends ConsumerState<ShowImposterScreen> {
           return shouldGoBack ?? false; // Return false if dialog is dismissed
         },
         child: Container(
-        padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Theme.of(context).colorScheme.primary,
-              Theme.of(context).colorScheme.primary.withAlpha(200),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: SafeArea(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  ' . . . القصقاص هو',
-                  style: GoogleFonts.rubik(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.onSecondary,
-                        ),
-                  ),
-                ),
-                SizedBox(height: 80),
-                Text(
-                  selectedItem!,
-                  style: GoogleFonts.rubik(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: (isRunning)
-                              ? Theme.of(context).colorScheme.onSecondary
-                              : Colors.redAccent,
-                        ),
-                  ),
-                ),
-                SizedBox(height: 80),
+          padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Theme.of(context).colorScheme.primary,
+                Theme.of(context).colorScheme.primary.withAlpha(200),
               ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: SafeArea(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    ' . . . القصقاص هو',
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 30,
+                      color: Theme.of(context).colorScheme.onSecondary,
+                    ),
+                  ),
+                  SizedBox(height: 80),
+                  Text(
+                    selectedItem!,
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 30,
+                      color: (isRunning)
+                          ? Theme.of(context).colorScheme.onSecondary
+                          : Colors.redAccent,
+                    ),
+                  ),
+                  SizedBox(height: 80),
+                ],
+              ),
             ),
           ),
         ),
       ),
-    ),);
+    );
   }
 }

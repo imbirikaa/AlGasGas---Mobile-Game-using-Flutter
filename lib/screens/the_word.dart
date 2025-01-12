@@ -7,7 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/word_provider.dart';
 import 'package:barra_modo3/providers/category_provider.dart';
 import 'package:barra_modo3/providers/players.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class TheWordScreen extends ConsumerStatefulWidget {
   const TheWordScreen({super.key});
@@ -48,13 +47,11 @@ class _TheWordScreenState extends ConsumerState<TheWordScreen> {
                 child: AlertDialog(
                   title: Text(
                     "تأكيد",
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
-                      textStyle:
-                          Theme.of(context).textTheme.bodySmall!.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   content: Column(
@@ -64,15 +61,11 @@ class _TheWordScreenState extends ConsumerState<TheWordScreen> {
                     children: [
                       Text(
                         "هل أنت متأكد تبي ترجع ؟",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w400,
                           fontSize: 16,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                       SizedBox(
@@ -80,15 +73,11 @@ class _TheWordScreenState extends ConsumerState<TheWordScreen> {
                               10), // Add spacing between main content and sub-description
                       Text(
                         "لن يتم حفظ التغييرات لو رجعت.",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                     ],
@@ -99,15 +88,11 @@ class _TheWordScreenState extends ConsumerState<TheWordScreen> {
                           Navigator.of(context).pop(false), // Stay on the page
                       child: Text(
                         "لا",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
                     ),
@@ -118,13 +103,11 @@ class _TheWordScreenState extends ConsumerState<TheWordScreen> {
                           (route) => false), // Go back
                       child: Text(
                         "نعم",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: Colors.redAccent,
-                                  ),
+                          color: Colors.redAccent,
                         ),
                       ),
                     ),
@@ -153,16 +136,12 @@ class _TheWordScreenState extends ConsumerState<TheWordScreen> {
                 children: [
                   SizedBox(height: 80),
                   Text(
-                    'مرحلة التصويت',
-                    style: GoogleFonts.rubik(
-                      fontWeight: FontWeight.bold,
+                    'اختيار الكلمة',
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w700,
                       fontSize: 30,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                   SizedBox(height: 30),
@@ -171,30 +150,20 @@ class _TheWordScreenState extends ConsumerState<TheWordScreen> {
                       children: [
                         TextSpan(
                           text: 'اعطوا الجهاز لـ ',
-                          style: GoogleFonts.rubik(
-                            fontWeight: FontWeight.normal,
+                          style: TextStyle(
+                            fontFamily: 'Rubik',
+                            fontWeight: FontWeight.w400,
                             fontSize: 24,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
-                                ),
+                            color: Theme.of(context).colorScheme.onSecondary,
                           ),
                         ),
                         TextSpan(
                           text: imposter.name,
-                          style: GoogleFonts.rubik(
-                            fontWeight: FontWeight.bold,
+                          style: TextStyle(
+                            fontFamily: 'Rubik',
+                            fontWeight: FontWeight.w700,
                             fontSize: 24,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
-                                ),
+                            color: Theme.of(context).colorScheme.onSecondary,
                           ),
                         ),
                       ],
@@ -204,18 +173,14 @@ class _TheWordScreenState extends ConsumerState<TheWordScreen> {
                   Text(
                     'اختار الكلمة اللي تحس ان الموضوع عليها',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.rubik(
-                      fontWeight: FontWeight.normal,
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w400,
                       fontSize: 20,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
-                  SizedBox(height: 50),
+                  SizedBox(height:30),
                   Expanded(
                     child: ListView.builder(
                       itemCount: answers.length,
@@ -252,15 +217,11 @@ class _TheWordScreenState extends ConsumerState<TheWordScreen> {
                         ),
                         child: Text(
                           answers[index],
-                          style: GoogleFonts.rubik(
+                          style: TextStyle(
+                            fontFamily: 'Rubik',
                             fontWeight: FontWeight.w500,
                             fontSize: 20,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                       ),

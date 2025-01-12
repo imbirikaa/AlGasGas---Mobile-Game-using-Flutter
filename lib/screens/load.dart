@@ -1,7 +1,7 @@
 import 'package:barra_modo3/screens/explanation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 class LoadScreen extends StatelessWidget {
   const LoadScreen({super.key});
@@ -20,24 +20,22 @@ class LoadScreen extends StatelessWidget {
                 child: AlertDialog(
                   title: Text(
                     "تأكيد",
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
-                      textStyle:
-                          Theme.of(context).textTheme.bodySmall!.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                      color: Theme.of(context).colorScheme.primary,
+                              
                     ),
                   ),
                   content: Text(
                     "هل أنت متأكد تبي تطلع ؟",
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontWeight: FontWeight.w400,
                       fontSize: 16,
-                      textStyle:
-                          Theme.of(context).textTheme.bodySmall!.copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
+                     color: Theme.of(context).colorScheme.secondary,
+                              
                     ),
                   ),
                   actions: [
@@ -46,15 +44,12 @@ class LoadScreen extends StatelessWidget {
                           Navigator.of(context).pop(false), // Stay on the page
                       child: Text(
                         "لا",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                      fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                          color: Theme.of(context).colorScheme.primary,
+                              
                         ),
                       ),
                     ),
@@ -65,13 +60,12 @@ class LoadScreen extends StatelessWidget {
                       }, // Go back
                       child: Text(
                         "نعم",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                      fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: Colors.redAccent,
-                                  ),
+                          color: Colors.redAccent,
+                                  
                         ),
                       ),
                     ),
@@ -95,12 +89,12 @@ class LoadScreen extends StatelessWidget {
               children: [
                 Text(
                   'لعبة من القصقاص ؟',
-                  style: GoogleFonts.rubik(
-                    fontWeight: FontWeight.bold,
+                  style: TextStyle(
+                      fontFamily: 'Rubik',
+                    fontWeight: FontWeight.w700,
                     fontSize: 30,
-                    textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: Theme.of(context).colorScheme.onSecondary,
-                        ),
+                    color: Theme.of(context).colorScheme.onSecondary,
+                        
                   ),
                 ),
                 SizedBox(height: 30),
@@ -115,13 +109,12 @@ class LoadScreen extends StatelessWidget {
                   iconAlignment: IconAlignment.end,
                   label: Text(
                     'ابدأ اللعبة',
-                    style: GoogleFonts.rubik(
-                      fontWeight: FontWeight.bold,
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w700,
                       fontSize: 20,
-                      textStyle:
-                          Theme.of(context).textTheme.bodySmall!.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                      color: Theme.of(context).colorScheme.primary,
+                              
                     ),
                   ),
                   icon: Icon(Icons.start),

@@ -1,6 +1,5 @@
 import 'package:barra_modo3/models/player.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Second extends StatelessWidget {
   const Second({required this.player, required this.word, super.key});
@@ -18,22 +17,20 @@ class Second extends StatelessWidget {
             children: [
               TextSpan(
                 text: 'اعطوا الجهاز لـ ',
-                style: GoogleFonts.rubik(
-                  fontWeight: FontWeight.bold,
+                style: TextStyle(
+                  fontFamily: 'Rubik',
+                  fontWeight: FontWeight.w700,
                   fontSize: 30,
-                  textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: Theme.of(context).colorScheme.onSecondary,
-                      ),
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
               TextSpan(
                 text: player.name,
-                style: GoogleFonts.rubik(
-                  fontWeight: FontWeight.bold,
+                style: TextStyle(
+                  fontFamily: 'Rubik',
+                  fontWeight: FontWeight.w700,
                   fontSize: 30,
-                  textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: Theme.of(context).colorScheme.onSecondary,
-                      ),
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
             ],
@@ -44,12 +41,11 @@ class Second extends StatelessWidget {
             ? Text(
                 'انت القصقاص في الشوط هذا . حاول تعرف شن الموضوع اللي يتكلموا عليه من الهدرزة متاعهم وماتخليهمش يشكّوا فيك',
                 textAlign: TextAlign.center,
-                style: GoogleFonts.rubik(
+                style: TextStyle(
+                  fontFamily: 'Rubik',
                   fontSize: 20,
                   height: 1.5,
-                  textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: Theme.of(context).colorScheme.onSecondary,
-                      ),
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
               )
             : Text.rich(
@@ -58,41 +54,29 @@ class Second extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: 'انت داخل الموضوع والموضوع هو',
-                      style: GoogleFonts.rubik(
+                      style: TextStyle(
+                        fontFamily: 'Rubik',
                         fontSize: 20,
                         height: 1.5,
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(
-                              color: Theme.of(context).colorScheme.onSecondary,
-                            ),
+                        color: Theme.of(context).colorScheme.onSecondary,
                       ),
                     ),
                     TextSpan(
                       text: "\n$word\n",
-                      style: GoogleFonts.rubik(
+                      style: TextStyle(
+                        fontFamily: 'Rubik',
                         fontSize: 20,
                         height: 1.5,
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(
-                              color: Theme.of(context).colorScheme.onSecondary,
-                            ),
+                        color: Theme.of(context).colorScheme.onSecondary,
                       ),
                     ),
                     TextSpan(
                       text: "المطلوب منك تعرف من القصقاص في الشوط هذا",
-                      style: GoogleFonts.rubik(
+                      style: TextStyle(
+                        fontFamily: 'Rubik',
                         fontSize: 20,
                         height: 1.5,
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(
-                              color: Theme.of(context).colorScheme.onSecondary,
-                            ),
+                        color: Theme.of(context).colorScheme.onSecondary,
                       ),
                     )
                   ],

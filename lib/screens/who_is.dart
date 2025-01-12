@@ -4,7 +4,6 @@ import 'package:barra_modo3/screens/show_imposter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class WhoIsScreen extends ConsumerStatefulWidget {
   const WhoIsScreen({super.key});
@@ -40,13 +39,11 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
                 child: AlertDialog(
                   title: Text(
                     "تأكيد",
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
-                      textStyle:
-                          Theme.of(context).textTheme.bodySmall!.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   content: Column(
@@ -56,15 +53,11 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
                     children: [
                       Text(
                         "هل أنت متأكد تبي ترجع ؟",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w400,
                           fontSize: 16,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                       SizedBox(
@@ -72,15 +65,11 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
                               10), // Add spacing between main content and sub-description
                       Text(
                         "لن يتم حفظ التغييرات لو رجعت.",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                     ],
@@ -91,15 +80,11 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
                           Navigator.of(context).pop(false), // Stay on the page
                       child: Text(
                         "لا",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
                     ),
@@ -110,13 +95,11 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
                           (route) => false), // Go back
                       child: Text(
                         "نعم",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: Colors.redAccent,
-                                  ),
+                          color: Colors.redAccent,
                         ),
                       ),
                     ),
@@ -146,15 +129,11 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
                   SizedBox(height: 80),
                   Text(
                     'مرحلة التصويت',
-                    style: GoogleFonts.rubik(
-                      fontWeight: FontWeight.bold,
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w700,
                       fontSize: 30,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                   SizedBox(height: 30),
@@ -163,30 +142,20 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
                       children: [
                         TextSpan(
                           text: 'اعطوا الجهاز لـ ',
-                          style: GoogleFonts.rubik(
-                            fontWeight: FontWeight.normal,
+                          style: TextStyle(
+                            fontFamily: 'Rubik',
+                            fontWeight: FontWeight.w400,
                             fontSize: 24,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
-                                ),
+                            color: Theme.of(context).colorScheme.onSecondary,
                           ),
                         ),
                         TextSpan(
                           text: players![i].name,
-                          style: GoogleFonts.rubik(
-                            fontWeight: FontWeight.bold,
+                          style: TextStyle(
+                            fontFamily: 'Rubik',
+                            fontWeight: FontWeight.w700,
                             fontSize: 24,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.onSecondary,
-                                ),
+                            color: Theme.of(context).colorScheme.onSecondary,
                           ),
                         ),
                       ],
@@ -196,15 +165,11 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
                   Text(
                     'اختار الشخص اللي تحس انّه القصقاص',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.rubik(
-                      fontWeight: FontWeight.normal,
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w400,
                       fontSize: 20,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                   SizedBox(height: 50),
@@ -239,15 +204,11 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
                               .where((p) => p != players![i])
                               .toList()[index]
                               .name,
-                          style: GoogleFonts.rubik(
+                          style: TextStyle(
+                            fontFamily: 'Rubik',
                             fontWeight: FontWeight.w500,
                             fontSize: 20,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                       ),

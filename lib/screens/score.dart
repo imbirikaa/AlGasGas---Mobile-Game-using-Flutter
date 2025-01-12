@@ -4,7 +4,7 @@ import 'package:barra_modo3/screens/category.dart';
 import 'package:barra_modo3/screens/explanation.dart';
 import 'package:barra_modo3/screens/giving_word.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
 
@@ -41,13 +41,11 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                 child: AlertDialog(
                   title: Text(
                     "تأكيد",
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
-                      textStyle:
-                          Theme.of(context).textTheme.bodySmall!.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   content: Column(
@@ -57,15 +55,11 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                     children: [
                       Text(
                         "هل أنت متأكد تبي ترجع ؟",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w400,
                           fontSize: 16,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                       SizedBox(
@@ -73,15 +67,11 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                               10), // Add spacing between main content and sub-description
                       Text(
                         "لن يتم حفظ التغييرات لو رجعت.",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                     ],
@@ -92,15 +82,11 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                           Navigator.of(context).pop(false), // Stay on the page
                       child: Text(
                         "لا",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
                     ),
@@ -111,13 +97,11 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                           (route) => false), // Go back
                       child: Text(
                         "نعم",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: Colors.redAccent,
-                                  ),
+                          color: Colors.redAccent,
                         ),
                       ),
                     ),
@@ -146,15 +130,11 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                 children: [
                   Text(
                     'النقـــاط',
-                    style: GoogleFonts.rubik(
-                      fontWeight: FontWeight.bold,
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w700,
                       fontSize: 30,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                   SizedBox(height: 80),
@@ -177,17 +157,13 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                                     flex: 1,
                                     child: Text(
                                       orderdPlayers[index].points.toString(),
-                                      style: GoogleFonts.rubik(
+                                      style: TextStyle(
+                                        fontFamily: 'Rubik',
                                         fontWeight: FontWeight.w500,
                                         fontSize: 20,
-                                        textStyle: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall!
-                                            .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .onSecondary,
-                                            ),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary,
                                       ),
                                     ),
                                   ),
@@ -195,17 +171,13 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                                     flex: 3,
                                     child: Text(
                                       '-----------------',
-                                      style: GoogleFonts.rubik(
+                                      style: TextStyle(
+                                        fontFamily: 'Rubik',
                                         fontWeight: FontWeight.w500,
                                         fontSize: 20,
-                                        textStyle: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall!
-                                            .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .onSecondary,
-                                            ),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary,
                                       ),
                                     ),
                                   ),
@@ -214,17 +186,13 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                                     child: Text(
                                       orderdPlayers[index].name,
                                       textAlign: TextAlign.end,
-                                      style: GoogleFonts.rubik(
+                                      style: TextStyle(
+                                        fontFamily: 'Rubik',
                                         fontWeight: FontWeight.w500,
                                         fontSize: 20,
-                                        textStyle: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall!
-                                            .copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .onSecondary,
-                                            ),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary,
                                       ),
                                     ),
                                   ),
@@ -243,16 +211,11 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                           iconAlignment: IconAlignment.end,
                           label: Text(
                             'تغيير اللاعبين',
-                            style: GoogleFonts.rubik(
+                            style: TextStyle(
+                              fontFamily: 'Rubik',
                               fontWeight: FontWeight.w500,
                               fontSize: 20,
-                              textStyle: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                  ),
+                              color: Theme.of(context).colorScheme.primary,
                             ),
                           ),
                           icon: Icon(Icons.person),
@@ -267,16 +230,11 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                           iconAlignment: IconAlignment.end,
                           label: Text(
                             'كلمة من نفس الموضوع',
-                            style: GoogleFonts.rubik(
+                            style: TextStyle(
+                              fontFamily: 'Rubik',
                               fontWeight: FontWeight.w500,
                               fontSize: 20,
-                              textStyle: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                  ),
+                              color: Theme.of(context).colorScheme.primary,
                             ),
                           ),
                           icon: Icon(Icons.flag),
@@ -291,16 +249,11 @@ class _ScoreSreenState extends ConsumerState<ScoreSreen> {
                           iconAlignment: IconAlignment.end,
                           label: Text(
                             'غيّر الموضوع',
-                            style: GoogleFonts.rubik(
+                            style: TextStyle(
+                              fontFamily: 'Rubik',
                               fontWeight: FontWeight.w500,
                               fontSize: 20,
-                              textStyle: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                  ),
+                              color: Theme.of(context).colorScheme.primary,
                             ),
                           ),
                           icon: Icon(Icons.edit),

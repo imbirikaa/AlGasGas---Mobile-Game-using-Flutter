@@ -2,7 +2,6 @@ import 'package:barra_modo3/models/category.dart';
 import 'package:barra_modo3/screens/add_player.dart';
 import 'package:barra_modo3/widgets/category.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
@@ -37,15 +36,11 @@ class CategoryScreen extends StatelessWidget {
                 children: [
                   Text(
                     'أختاروا موضوع',
-                    style: GoogleFonts.rubik(
-                      fontWeight: FontWeight.bold,
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
+                      fontWeight: FontWeight.w700,
                       fontSize: 30,
-                      textStyle: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                          ),
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                   SizedBox(height: 50),

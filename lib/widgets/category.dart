@@ -1,7 +1,7 @@
 import 'package:barra_modo3/models/category.dart';
 import 'package:barra_modo3/screens/giving_word.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/category_provider.dart';
 
@@ -46,12 +46,11 @@ class _CategoryItemState extends ConsumerState<CategoryItem> {
               ),
               Text(
                 widget.category.title,
-                style: GoogleFonts.rubik(
-                  fontWeight: FontWeight.bold,
+                style: TextStyle(
+                  fontFamily: 'Rubik',
+                  fontWeight: FontWeight.w700,
                   fontSize: 30,
-                  textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: Theme.of(context).colorScheme.onSecondary,
-                      ),
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
             ],

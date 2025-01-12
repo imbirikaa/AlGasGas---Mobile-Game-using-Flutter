@@ -2,7 +2,7 @@ import 'package:barra_modo3/models/player.dart';
 import 'package:barra_modo3/screens/category.dart';
 import 'package:barra_modo3/screens/explanation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
 
@@ -46,13 +46,11 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                 child: AlertDialog(
                   title: Text(
                     "تأكيد",
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
-                      textStyle:
-                          Theme.of(context).textTheme.bodySmall!.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   content: Column(
@@ -62,15 +60,11 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                     children: [
                       Text(
                         "هل أنت متأكد تبي ترجع ؟",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w400,
                           fontSize: 16,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                       SizedBox(
@@ -78,15 +72,11 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                               10), // Add spacing between main content and sub-description
                       Text(
                         "لن يتم حفظ التغييرات لو رجعت.",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.secondary,
-                              ),
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                     ],
@@ -97,15 +87,11 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                           Navigator.of(context).pop(false), // Stay on the page
                       child: Text(
                         "لا",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
                     ),
@@ -116,13 +102,11 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                           (route) => false), // Go back
                       child: Text(
                         "نعم",
-                        style: GoogleFonts.rubik(
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
-                          textStyle:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: Colors.redAccent,
-                                  ),
+                          color: Colors.redAccent,
                         ),
                       ),
                     ),
@@ -152,57 +136,46 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                   Column(mainAxisAlignment: MainAxisAlignment.start, children: [
                     Text(
                       'اضافة اللاعبين',
-                      style: GoogleFonts.rubik(
-                        fontWeight: FontWeight.bold,
+                      style: TextStyle(
+                        fontFamily: 'Rubik',
+                        fontWeight: FontWeight.w700,
                         fontSize: 30,
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(
-                              color: Theme.of(context).colorScheme.onSecondary,
-                            ),
+                        color: Theme.of(context).colorScheme.onSecondary,
                       ),
                     ),
                     SizedBox(height: 8),
                     Text(
                       'اقل شيء 4 لاعبين',
-                      style: GoogleFonts.rubik(
+                      style: TextStyle(
+                        fontFamily: 'Rubik',
                         fontWeight: FontWeight.w300,
                         fontSize: 16,
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(
-                              color: Theme.of(context).colorScheme.onSecondary,
-                            ),
+                        color: Theme.of(context).colorScheme.onSecondary,
                       ),
                     ),
                     SizedBox(height: 16),
                     TextField(
                       controller: _nameController,
                       textAlign: TextAlign.end,
-                      style: GoogleFonts.rubik(
+                      style: TextStyle(
+                        fontFamily: 'Rubik',
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
-                        textStyle:
-                            Theme.of(context).textTheme.bodySmall!.copyWith(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .primary
-                                      .withAlpha(200),
-                                ),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withAlpha(200),
                       ),
                       decoration: InputDecoration(
                         hintText: 'اكتب اسم اللاعب',
-                        hintStyle: GoogleFonts.rubik(
+                        hintStyle: TextStyle(
+                          fontFamily: 'Rubik',
+                          fontWeight: FontWeight.w500,
                           fontSize: 16,
-                          textStyle:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .primary
-                                        .withAlpha(200),
-                                  ),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withAlpha(150),
                         ),
                         suffixIcon: Icon(Icons.person, color: Colors.green),
                         border: OutlineInputBorder(
@@ -248,17 +221,13 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                                     Icon(Icons.person, color: Colors.green),
                                 title: Text(
                                   players[index].name,
-                                  style: GoogleFonts.rubik(
+                                  style: TextStyle(
+                                    fontFamily: 'Rubik',
                                     fontWeight: FontWeight.w500,
                                     fontSize: 20,
-                                    textStyle: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall!
-                                        .copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onSecondary,
-                                        ),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSecondary,
                                   ),
                                 ),
                               ),
@@ -275,15 +244,11 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                         iconAlignment: IconAlignment.end,
                         label: Text(
                           "أضف لاعب",
-                          style: GoogleFonts.rubik(
+                          style: TextStyle(
+                            fontFamily: 'Rubik',
                             fontWeight: FontWeight.w500,
                             fontSize: 20,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                         icon: Icon(Icons.person),
@@ -294,15 +259,11 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                         iconAlignment: IconAlignment.end,
                         label: Text(
                           "! جاهزين",
-                          style: GoogleFonts.rubik(
+                          style: TextStyle(
+                            fontFamily: 'Rubik',
                             fontWeight: FontWeight.w500,
                             fontSize: 20,
-                            textStyle: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         ),
                         icon: Icon(Icons.flag),

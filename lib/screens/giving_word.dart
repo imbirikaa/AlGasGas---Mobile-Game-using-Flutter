@@ -10,7 +10,6 @@ import 'package:barra_modo3/widgets/second.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class GivingWord extends ConsumerStatefulWidget {
   const GivingWord({super.key});
@@ -79,22 +78,20 @@ class _GivingWordState extends ConsumerState<GivingWord> {
               child: AlertDialog(
                 title: Text(
                   "تأكيد",
-                  style: GoogleFonts.rubik(
+                  style: TextStyle(
+                    fontFamily: 'Rubik',
                     fontWeight: FontWeight.w500,
                     fontSize: 20,
-                    textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
                 content: Text(
                   "هل أنت متأكد تبي ترجع ؟",
-                  style: GoogleFonts.rubik(
+                  style: TextStyle(
+                    fontFamily: 'Rubik',
                     fontWeight: FontWeight.w400,
                     fontSize: 16,
-                    textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
                 actions: [
@@ -103,13 +100,11 @@ class _GivingWordState extends ConsumerState<GivingWord> {
                         Navigator.of(context).pop(false), // Stay on the page
                     child: Text(
                       "لا",
-                      style: GoogleFonts.rubik(
+                      style: TextStyle(
+                        fontFamily: 'Rubik',
                         fontWeight: FontWeight.w500,
                         fontSize: 20,
-                        textStyle:
-                            Theme.of(context).textTheme.bodySmall!.copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
                   ),
@@ -120,13 +115,11 @@ class _GivingWordState extends ConsumerState<GivingWord> {
                         (route) => false), // Go back
                     child: Text(
                       "نعم",
-                      style: GoogleFonts.rubik(
+                      style: TextStyle(
+                        fontFamily: 'Rubik',
                         fontWeight: FontWeight.w500,
                         fontSize: 20,
-                        textStyle:
-                            Theme.of(context).textTheme.bodySmall!.copyWith(
-                                  color: Colors.redAccent,
-                                ),
+                        color: Colors.redAccent,
                       ),
                     ),
                   ),
@@ -174,13 +167,11 @@ class _GivingWordState extends ConsumerState<GivingWord> {
                   },
                   child: Text(
                     'التالــــي',
-                    style: GoogleFonts.rubik(
+                    style: TextStyle(
+                      fontFamily: 'Rubik',
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
-                      textStyle:
-                          Theme.of(context).textTheme.bodySmall!.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 ),
