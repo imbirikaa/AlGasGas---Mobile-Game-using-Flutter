@@ -5,6 +5,8 @@ import 'package:barra_modo3/screens/the_word.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
 import 'package:barra_modo3/widgets/exit_confirmation_dialog.dart';
+import 'package:barra_modo3/theme/brutal_style.dart';
+import 'package:barra_modo3/theme/page_transitions.dart';
 
 import 'package:flutter/material.dart';
 
@@ -53,8 +55,7 @@ class _ShowImposterScreenState extends ConsumerState<ShowImposterScreen> {
     // Pause for 5 seconds
     await Future.delayed(Duration(seconds: 3));
     if (mounted) {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => TheWordScreen()));
+      Navigator.of(context).pushReplacement(brutalRoute(TheWordScreen()));
     }
   }
 
@@ -63,16 +64,21 @@ class _ShowImposterScreenState extends ConsumerState<ShowImposterScreen> {
     return Scaffold(
       body: ExitConfirmationScope(
         onConfirm: () => Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => ExplanationScreen()),
-            (route) => false),
-        child: Container(
+            brutalRoute(ExplanationScreen()), (route) => false),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 400),
           padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                Theme.of(context).colorScheme.primary,
-                Theme.of(context).colorScheme.primary.withAlpha(200),
-              ],
+              colors: isRunning
+                  ? [
+                      Theme.of(context).colorScheme.primary,
+                      Theme.of(context).colorScheme.primary.withAlpha(200),
+                    ]
+                  : [
+                      Colors.black,
+                      Colors.redAccent.shade700,
+                    ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -92,17 +98,34 @@ class _ShowImposterScreenState extends ConsumerState<ShowImposterScreen> {
                     ),
                   ),
                   SizedBox(height: 80),
-                  Text(
-                    selectedItem!,
-                    style: TextStyle(
-                      fontFamily: 'Rubik',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 30,
-                      color: (isRunning)
-                          ? Theme.of(context).colorScheme.onSecondary
-                          : Colors.redAccent,
+                  if (isRunning)
+                    Text(
+                      selectedItem!,
+                      style: TextStyle(
+                        fontFamily: 'Rubik',
+                        fontWeight: FontWeight.w700,
+                        fontSize: 30,
+                        color: Theme.of(context).colorScheme.onSecondary,
+                      ),
+                    )
+                  else
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 28, vertical: 12),
+                      decoration: brutalBoxDecoration(
+                        color: Colors.white,
+                        shadowOffset: const Offset(6, 6),
+                      ),
+                      child: Text(
+                        selectedItem!,
+                        style: TextStyle(
+                          fontFamily: 'Rubik',
+                          fontWeight: FontWeight.w700,
+                          fontSize: 30,
+                          color: Colors.redAccent.shade700,
+                        ),
+                      ),
                     ),
-                  ),
                   SizedBox(height: 80),
                 ],
               ),

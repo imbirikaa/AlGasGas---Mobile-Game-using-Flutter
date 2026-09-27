@@ -1,4 +1,6 @@
 import 'package:barra_modo3/screens/explanation.dart';
+import 'package:barra_modo3/theme/brutal_style.dart';
+import 'package:barra_modo3/theme/page_transitions.dart';
 import 'package:barra_modo3/widgets/exit_confirmation_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -46,22 +48,12 @@ class LoadScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 30),
                 SizedBox(height: 30),
-                ElevatedButton.icon(
-                  iconAlignment: IconAlignment.end,
-                  label: Text(
-                    'ابدأ اللعبة',
-                    style: TextStyle(
-                      fontFamily: 'Rubik',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20,
-                      color: Theme.of(context).colorScheme.primary,
-                              
-                    ),
-                  ),
-                  icon: Icon(Icons.start),
+                BrutalButton(
+                  label: 'ابدأ اللعبة',
+                  icon: Icons.start,
                   onPressed: () {
                     Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (ctx) => ExplanationScreen()),
+                      brutalRoute(ExplanationScreen()),
                       (route) => false,
                     );
                   },

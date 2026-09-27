@@ -1,5 +1,6 @@
 import 'package:barra_modo3/models/category.dart';
 import 'package:barra_modo3/screens/add_player.dart';
+import 'package:barra_modo3/theme/page_transitions.dart';
 import 'package:barra_modo3/widgets/category.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class CategoryScreen extends StatelessWidget {
         onPopInvokedWithResult: (didPop, result) {
           if (didPop) return;
           Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => AddPlayerScreen()),
+            brutalRoute(AddPlayerScreen()),
             (route) => false,
           );
         },

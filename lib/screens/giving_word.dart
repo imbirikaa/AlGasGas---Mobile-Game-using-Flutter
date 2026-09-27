@@ -8,6 +8,8 @@ import 'package:barra_modo3/screens/category.dart';
 import 'package:barra_modo3/widgets/first.dart';
 import 'package:barra_modo3/widgets/second.dart';
 import 'package:barra_modo3/widgets/exit_confirmation_dialog.dart';
+import 'package:barra_modo3/theme/brutal_style.dart';
+import 'package:barra_modo3/theme/page_transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
@@ -70,8 +72,7 @@ class _GivingWordState extends ConsumerState<GivingWord> {
     return Scaffold(
         body: ExitConfirmationScope(
       onConfirm: () => Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => CategoryScreen()),
-          (route) => false),
+          brutalRoute(CategoryScreen()), (route) => false),
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
         decoration: BoxDecoration(
@@ -90,7 +91,9 @@ class _GivingWordState extends ConsumerState<GivingWord> {
               children: [
                 (page == 'first') ? firstPage() : secondPage(),
                 Spacer(),
-                ElevatedButton(
+                BrutalButton(
+                  label: 'التالــــي',
+                  icon: Icons.arrow_forward,
                   onPressed: () {
                     setState(() {
                       if (page == 'first') {
@@ -100,22 +103,11 @@ class _GivingWordState extends ConsumerState<GivingWord> {
                         i++;
                       } else {
                         Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => AskingScreen(),
-                          ),
+                          brutalRoute(AskingScreen()),
                         );
                       }
                     });
                   },
-                  child: Text(
-                    'التالــــي',
-                    style: TextStyle(
-                      fontFamily: 'Rubik',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
                 ),
                 SizedBox(height: 30)
               ],

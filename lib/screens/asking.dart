@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
 import 'package:barra_modo3/widgets/exit_confirmation_dialog.dart';
+import 'package:barra_modo3/theme/brutal_style.dart';
+import 'package:barra_modo3/theme/page_transitions.dart';
 
 class AskingScreen extends ConsumerStatefulWidget {
   const AskingScreen({super.key});
@@ -62,8 +64,7 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
     return Scaffold(
       body: ExitConfirmationScope(
         onConfirm: () => Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => CategoryScreen()),
-            (route) => false),
+            brutalRoute(CategoryScreen()), (route) => false),
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
           decoration: BoxDecoration(
@@ -136,7 +137,9 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
                     ),
                   ),
                   Spacer(),
-                  ElevatedButton(
+                  BrutalButton(
+                    label: 'التالــــي',
+                    icon: Icons.arrow_forward,
                     onPressed: () {
                       if (i < players.length - 1) {
                         if (!secondRound) {
@@ -154,21 +157,10 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
                         });
                       } else {
                         Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => WhoIsScreen(),
-                          ),
+                          brutalRoute(WhoIsScreen()),
                         );
                       }
                     },
-                    child: Text(
-                      'التالــــي',
-                      style: TextStyle(
-                        fontFamily: 'Rubik',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
                   ),
                 ],
               ),

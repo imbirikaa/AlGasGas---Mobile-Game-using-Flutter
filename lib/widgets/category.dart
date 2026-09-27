@@ -1,5 +1,7 @@
 import 'package:barra_modo3/models/category.dart';
 import 'package:barra_modo3/screens/giving_word.dart';
+import 'package:barra_modo3/theme/brutal_style.dart';
+import 'package:barra_modo3/theme/page_transitions.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,26 +16,36 @@ class CategoryItem extends ConsumerStatefulWidget {
 }
 
 class _CategoryItemState extends ConsumerState<CategoryItem> {
+  bool _pressed = false;
+
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      splashColor: Theme.of(context).colorScheme.onSecondary,
+    final offset = _pressed ? const Offset(2, 2) : const Offset(6, 6);
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _pressed = true),
+      onTapUp: (_) => setState(() => _pressed = false),
+      onTapCancel: () => setState(() => _pressed = false),
       onTap: () {
         ref.read(categoryNotifier.notifier).setCategory(widget.category);
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => GivingWord(),
-          ),
+          brutalRoute(GivingWord()),
         );
       },
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 80),
+        curve: Curves.easeOut,
+        transform: Matrix4.translationValues(
+          _pressed ? 4 : 0,
+          _pressed ? 4 : 0,
+          0,
+        ),
         padding: EdgeInsets.all(16),
         margin: EdgeInsets.all(10),
         height: 250,
         width: 250,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+        decoration: brutalBoxDecoration(
           color: widget.category.color,
+          shadowOffset: offset,
         ),
         child: Center(
           child: Column(

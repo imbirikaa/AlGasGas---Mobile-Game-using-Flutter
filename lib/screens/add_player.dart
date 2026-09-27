@@ -1,6 +1,8 @@
 import 'package:barra_modo3/models/player.dart';
 import 'package:barra_modo3/screens/category.dart';
 import 'package:barra_modo3/screens/explanation.dart';
+import 'package:barra_modo3/theme/brutal_style.dart';
+import 'package:barra_modo3/theme/page_transitions.dart';
 import 'package:barra_modo3/widgets/exit_confirmation_dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -38,8 +40,7 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
     return Scaffold(
       body: ExitConfirmationScope(
         onConfirm: () => Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => ExplanationScreen()),
-            (route) => false),
+            brutalRoute(ExplanationScreen()), (route) => false),
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
           decoration: BoxDecoration(
@@ -123,34 +124,48 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                       child: ListView.builder(
                         itemCount: players.length,
                         itemBuilder: (context, index) {
-                          return Dismissible(
-                            key: ValueKey(players[index].id),
-                            onDismissed: (direction) {
-                              ref
-                                  .read(playersNotifier.notifier)
-                                  .removePlayer(players[index]);
-                            },
-                            direction: DismissDirection.endToStart,
-                            background: Container(
-                              alignment: Alignment.centerRight,
-                              padding: EdgeInsets.symmetric(horizontal: 20),
-                              color: Colors.red,
-                              child: Icon(Icons.delete, color: Colors.white),
-                            ),
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: ListTile(
-                                leading:
-                                    Icon(Icons.person, color: Colors.green),
-                                title: Text(
-                                  players[index].name,
-                                  style: TextStyle(
-                                    fontFamily: 'Rubik',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onSecondary,
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 6),
+                            child: Dismissible(
+                              key: ValueKey(players[index].id),
+                              onDismissed: (direction) {
+                                ref
+                                    .read(playersNotifier.notifier)
+                                    .removePlayer(players[index]);
+                              },
+                              direction: DismissDirection.endToStart,
+                              background: Container(
+                                alignment: Alignment.centerRight,
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                decoration: brutalBoxDecoration(
+                                  color: Colors.redAccent,
+                                  shadowOffset: const Offset(4, 4),
+                                ),
+                                child: Icon(Icons.delete, color: Colors.white),
+                              ),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 4),
+                                decoration: brutalBoxDecoration(
+                                  color:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                  shadowOffset: const Offset(4, 4),
+                                ),
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: ListTile(
+                                    leading:
+                                        Icon(Icons.person, color: Colors.green),
+                                    title: Text(
+                                      players[index].name,
+                                      style: TextStyle(
+                                        fontFamily: 'Rubik',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 20,
+                                        color:
+                                            Theme.of(context).colorScheme.primary,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -163,33 +178,15 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ElevatedButton.icon(
-                        iconAlignment: IconAlignment.end,
-                        label: Text(
-                          "أضف لاعب",
-                          style: TextStyle(
-                            fontFamily: 'Rubik',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 20,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                        ),
-                        icon: Icon(Icons.person),
+                      BrutalButton(
+                        label: "أضف لاعب",
+                        icon: Icons.person,
                         onPressed: _addPlayer,
                       ),
                       SizedBox(width: 24),
-                      ElevatedButton.icon(
-                        iconAlignment: IconAlignment.end,
-                        label: Text(
-                          "! جاهزين",
-                          style: TextStyle(
-                            fontFamily: 'Rubik',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 20,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                        ),
-                        icon: Icon(Icons.flag),
+                      BrutalButton(
+                        label: "! جاهزين",
+                        icon: Icons.flag,
                         onPressed: (players.length < 4)
                             ? null
                             : () {
@@ -198,9 +195,7 @@ class _AddPlayerScreenState extends ConsumerState<AddPlayerScreen> {
                                     .cleanPoints();
 
                                 Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (ctx) => CategoryScreen(),
-                                  ),
+                                  brutalRoute(CategoryScreen()),
                                 );
                               },
                       ),

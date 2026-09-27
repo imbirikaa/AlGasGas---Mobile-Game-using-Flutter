@@ -1,5 +1,7 @@
 import 'package:barra_modo3/screens/add_player.dart';
 import 'package:barra_modo3/screens/load.dart';
+import 'package:barra_modo3/theme/brutal_style.dart';
+import 'package:barra_modo3/theme/page_transitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
@@ -20,7 +22,7 @@ class _ExplanationScreenState extends ConsumerState<ExplanationScreen> {
         onPopInvokedWithResult: (didPop, result) {
           if (didPop) return;
           Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => LoadScreen()),
+            brutalRoute(LoadScreen()),
             (route) => false,
           );
         },
@@ -76,14 +78,22 @@ class _ExplanationScreenState extends ConsumerState<ExplanationScreen> {
                       color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
-                  SizedBox(height: 8),
-                  Text(
-                    'القصقاص',
-                    style: TextStyle(
-                      fontFamily: 'Rubik',
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
+                  SizedBox(height: 12),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 8),
+                    decoration: brutalBoxDecoration(
                       color: Colors.redAccent,
+                      shadowOffset: const Offset(4, 4),
+                    ),
+                    child: Text(
+                      'القصقاص',
+                      style: TextStyle(
+                        fontFamily: 'Rubik',
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   SizedBox(height: 16),
@@ -108,25 +118,14 @@ class _ExplanationScreenState extends ConsumerState<ExplanationScreen> {
                     ),
                   ),
                   SizedBox(height: 30),
-                  ElevatedButton.icon(
-                    iconAlignment: IconAlignment.end,
-                    label: Text(
-                      "! جاهزين",
-                      style: TextStyle(
-                        fontFamily: 'Rubik',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                    icon: Icon(Icons.start),
+                  BrutalButton(
+                    label: "! جاهزين",
+                    icon: Icons.start,
                     onPressed: () {
                       ref.read(playersNotifier.notifier).cleanPlayers();
 
                       Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                          builder: (ctx) => AddPlayerScreen(),
-                        ),
+                        brutalRoute(AddPlayerScreen()),
                         (route) => false,
                       );
                     },

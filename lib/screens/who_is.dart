@@ -1,6 +1,8 @@
 import 'package:barra_modo3/models/player.dart';
 import 'package:barra_modo3/screens/explanation.dart';
 import 'package:barra_modo3/screens/show_imposter.dart';
+import 'package:barra_modo3/theme/brutal_style.dart';
+import 'package:barra_modo3/theme/page_transitions.dart';
 import 'package:barra_modo3/widgets/exit_confirmation_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,15 +33,14 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
     return Scaffold(
       body: ExitConfirmationScope(
         onConfirm: () => Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => ExplanationScreen()),
-            (route) => false),
+            brutalRoute(ExplanationScreen()), (route) => false),
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
+                Colors.redAccent.shade700,
                 Theme.of(context).colorScheme.primary,
-                Theme.of(context).colorScheme.primary.withAlpha(200),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -102,37 +103,30 @@ class _WhoIsScreenState extends ConsumerState<WhoIsScreen> {
                           .where((p) => p != players![i])
                           .toList()
                           .length,
-                      itemBuilder: (ctx, index) => ElevatedButton(
-                        onPressed: () {
-                          if (players!
-                                  .where((p) => p != players![i])
-                                  .toList()[index] ==
-                              imposterPlayer) {
-                            players![i].points += 10;
-                          }
-                          if (i >= players!.length - 1) {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => ShowImposterScreen(),
-                              ),
-                            );
-                          } else {
-                            setState(() {
-                              i++;
-                            });
-                          }
-                        },
-                        child: Text(
-                          players!
+                      itemBuilder: (ctx, index) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 6),
+                        child: BrutalButton(
+                          label: players!
                               .where((p) => p != players![i])
                               .toList()[index]
                               .name,
-                          style: TextStyle(
-                            fontFamily: 'Rubik',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 20,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
+                          onPressed: () {
+                            if (players!
+                                    .where((p) => p != players![i])
+                                    .toList()[index] ==
+                                imposterPlayer) {
+                              players![i].points += 10;
+                            }
+                            if (i >= players!.length - 1) {
+                              Navigator.of(context).pushReplacement(
+                                brutalRoute(ShowImposterScreen()),
+                              );
+                            } else {
+                              setState(() {
+                                i++;
+                              });
+                            }
+                          },
                         ),
                       ),
                     ),

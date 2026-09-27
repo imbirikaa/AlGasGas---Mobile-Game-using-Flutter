@@ -8,6 +8,8 @@ import 'package:barra_modo3/providers/word_provider.dart';
 import 'package:barra_modo3/providers/category_provider.dart';
 import 'package:barra_modo3/providers/players.dart';
 import 'package:barra_modo3/widgets/exit_confirmation_dialog.dart';
+import 'package:barra_modo3/theme/brutal_style.dart';
+import 'package:barra_modo3/theme/page_transitions.dart';
 
 class TheWordScreen extends ConsumerStatefulWidget {
   const TheWordScreen({super.key});
@@ -39,8 +41,7 @@ class _TheWordScreenState extends ConsumerState<TheWordScreen> {
     return Scaffold(
       body: ExitConfirmationScope(
         onConfirm: () => Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => ExplanationScreen()),
-            (route) => false),
+            brutalRoute(ExplanationScreen()), (route) => false),
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
           decoration: BoxDecoration(
@@ -107,44 +108,35 @@ class _TheWordScreenState extends ConsumerState<TheWordScreen> {
                   Expanded(
                     child: ListView.builder(
                       itemCount: answers.length,
-                      itemBuilder: (ctx, index) => ElevatedButton(
-                        onPressed: (isSelected)
-                            ? null
-                            : () async {
-                                setState(() {
-                                  selectedIndex = index;
-                                  isSelected = true;
-                                  isCorrect = answers[index] == theWord;
-                                  if (isCorrect) {
-                                    imposter.points += 10;
-                                  }
-                                });
-                                await Future.delayed(Duration(seconds: 3));
-                                if (!context.mounted) return;
-                                Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                        builder: (context) => ScoreSreen()));
-                              },
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(
-                              (selectedIndex == index)
-                                  ? ((answers[index] == theWord)
-                                      ? Colors.green
-                                      : Colors.red)
-                                  : (isSelected && answers[index] == theWord)
-                                      ? Colors.green
-                                      : Theme.of(context)
-                                          .colorScheme
-                                          .onSecondary),
-                        ),
-                        child: Text(
-                          answers[index],
-                          style: TextStyle(
-                            fontFamily: 'Rubik',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 20,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
+                      itemBuilder: (ctx, index) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 6),
+                        child: BrutalButton(
+                          label: answers[index],
+                          color: (selectedIndex == index)
+                              ? ((answers[index] == theWord)
+                                  ? Colors.green
+                                  : Colors.red)
+                              : (isSelected && answers[index] == theWord)
+                                  ? Colors.green
+                                  : null,
+                          dimWhenDisabled: !(selectedIndex == index ||
+                              (isSelected && answers[index] == theWord)),
+                          onPressed: (isSelected)
+                              ? null
+                              : () async {
+                                  setState(() {
+                                    selectedIndex = index;
+                                    isSelected = true;
+                                    isCorrect = answers[index] == theWord;
+                                    if (isCorrect) {
+                                      imposter.points += 10;
+                                    }
+                                  });
+                                  await Future.delayed(Duration(seconds: 3));
+                                  if (!context.mounted) return;
+                                  Navigator.of(context).pushReplacement(
+                                      brutalRoute(ScoreSreen()));
+                                },
                         ),
                       ),
                     ),
