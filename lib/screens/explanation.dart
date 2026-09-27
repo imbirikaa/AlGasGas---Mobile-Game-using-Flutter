@@ -13,16 +13,16 @@ class ExplanationScreen extends ConsumerStatefulWidget {
 
 class _ExplanationScreenState extends ConsumerState<ExplanationScreen> {
   @override
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WillPopScope(
-        onWillPop: () async {
+      body: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) {
+          if (didPop) return;
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => LoadScreen()),
             (route) => false,
           );
-          return false; // Prevent default back button behavior
         },
         child: Container(
           decoration: BoxDecoration(

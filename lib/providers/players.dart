@@ -20,12 +20,6 @@ class PlayersNotifier extends StateNotifier<List<Player>> {
     }
   }
 
-  void cleanImposter() {
-    for (Player p in state) {
-      p.isImposter = false;
-    }
-  }
-
   void cleanPlayers(){
     state = [];
   }

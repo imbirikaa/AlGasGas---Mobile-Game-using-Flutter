@@ -6,6 +6,7 @@ import 'package:barra_modo3/screens/who_is.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
+import 'package:barra_modo3/widgets/exit_confirmation_dialog.dart';
 
 class AskingScreen extends ConsumerStatefulWidget {
   const AskingScreen({super.key});
@@ -59,69 +60,10 @@ class _AskingScreenState extends ConsumerState<AskingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WillPopScope(
-        onWillPop: () async {
-          // Show a confirmation dialog
-          final shouldGoBack = await showDialog<bool>(
-            context: context,
-            builder: (context) {
-              return Directionality(
-                textDirection: TextDirection.rtl,
-                child: AlertDialog(
-                  title: Text(
-                    "تأكيد",
-                    style: TextStyle(
-                      fontFamily: 'Rubik',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                  content: Text(
-                    "هل أنت متأكد تبي ترجع ؟",
-                    style: TextStyle(
-                      fontFamily: 'Rubik',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () =>
-                          Navigator.of(context).pop(false), // Stay on the page
-                      child: Text(
-                        "لا",
-                        style: TextStyle(
-                          fontFamily: 'Rubik',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => CategoryScreen()),
-                          (route) => false), // Go back
-                      child: Text(
-                        "نعم",
-                        style: TextStyle(
-                          fontFamily: 'Rubik',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                          color: Colors.redAccent,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-          return shouldGoBack ?? false; // Return false if dialog is dismissed
-        },
+      body: ExitConfirmationScope(
+        onConfirm: () => Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => CategoryScreen()),
+            (route) => false),
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
           decoration: BoxDecoration(

@@ -4,6 +4,7 @@ import 'package:barra_modo3/screens/explanation.dart';
 import 'package:barra_modo3/screens/the_word.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barra_modo3/providers/players.dart';
+import 'package:barra_modo3/widgets/exit_confirmation_dialog.dart';
 
 import 'package:flutter/material.dart';
 
@@ -51,95 +52,19 @@ class _ShowImposterScreenState extends ConsumerState<ShowImposterScreen> {
 
     // Pause for 5 seconds
     await Future.delayed(Duration(seconds: 3));
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => TheWordScreen()));
+    if (mounted) {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => TheWordScreen()));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WillPopScope(
-        onWillPop: () async {
-          // Show a confirmation dialog
-          final shouldGoBack = await showDialog<bool>(
-            context: context,
-            builder: (context) {
-              return Directionality(
-                textDirection: TextDirection.rtl,
-                child: AlertDialog(
-                  title: Text(
-                    "تأكيد",
-                    style: TextStyle(
-                      fontFamily: 'Rubik',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment
-                        .start, // Ensures the column takes only necessary space
-                    children: [
-                      Text(
-                        "هل أنت متأكد تبي ترجع ؟",
-                        style: TextStyle(
-                          fontFamily: 'Rubik',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
-                      ),
-                      SizedBox(
-                          height:
-                              10), // Add spacing between main content and sub-description
-                      Text(
-                        "لن يتم حفظ التغييرات لو رجعت.",
-                        style: TextStyle(
-                          fontFamily: 'Rubik',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
-                      ),
-                    ],
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () =>
-                          Navigator.of(context).pop(false), // Stay on the page
-                      child: Text(
-                        "لا",
-                        style: TextStyle(
-                          fontFamily: 'Rubik',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => ExplanationScreen()),
-                          (route) => false), // Go back
-                      child: Text(
-                        "نعم",
-                        style: TextStyle(
-                          fontFamily: 'Rubik',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20,
-                          color: Colors.redAccent,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-          return shouldGoBack ?? false; // Return false if dialog is dismissed
-        },
+      body: ExitConfirmationScope(
+        onConfirm: () => Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => ExplanationScreen()),
+            (route) => false),
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 50, horizontal: 40),
           decoration: BoxDecoration(

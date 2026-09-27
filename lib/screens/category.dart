@@ -10,13 +10,14 @@ class CategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final categories = CategoryModel.getCategories();
     return Scaffold(
-      body: WillPopScope(
-        onWillPop: () async {
+      body: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) {
+          if (didPop) return;
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => AddPlayerScreen()),
             (route) => false,
           );
-          return false; // Prevent default back button behavior
         },
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 50, horizontal: 30),
